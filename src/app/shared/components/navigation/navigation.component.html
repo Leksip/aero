@@ -1,0 +1,28 @@
+<nav class="navigation">
+  <ul class="navigation__list">
+    <li routerLinkActive="active"
+        [routerLink]="['inventory']"
+        class="navigation__item"
+    >Inventory
+    </li>
+
+    <li routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+        [routerLink]="['/admin']"
+        class="navigation__item"
+    >Reports
+    </li>
+
+    <li routerLinkActive="active"
+        [routerLink]="['billing']"
+        class="navigation__item"
+    >Billing
+    </li>
+
+    <li routerLinkActive="active"
+        [routerLink]="['profile/',userId]"
+        class="navigation__item"
+    >Profile
+    </li>
+  </ul>
+</nav>

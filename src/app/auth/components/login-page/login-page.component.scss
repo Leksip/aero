@@ -1,0 +1,19 @@
+.login-page {
+  &__container {
+    width: 100%;
+  }
+
+  &__input {
+    width: 100%;
+  }
+
+  &__error {
+    font-size: 12px;
+    color: red;
+    margin-bottom: 10px;
+  }
+
+  &__loader {
+    margin-bottom: 10px;
+  }
+}

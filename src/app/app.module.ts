@@ -1,18 +1,38 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule, Provider} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRouting} from './app.routing';
+import {AppComponent} from './app.component';
+import {SharedModule} from './shared/shared.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AuthModule} from './auth/auth.module';
+import {AdminModule} from './admin/admin.module';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor} from './shared/auth.interceptor';
+import {AuthService} from './shared/services/auth.service';
 
+
+
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: AuthInterceptor
+}
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRouting,
+    SharedModule,
+    BrowserAnimationsModule,
+    AuthModule,
+    AdminModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthService, INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

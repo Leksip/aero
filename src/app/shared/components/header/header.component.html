@@ -1,0 +1,22 @@
+<div class="header">
+  <div class="header__container">
+    <div class="header__buttons">
+      <div *ngIf="!isAuthenticated">
+        <button mat-raised-button (click)="openDialog()">Войти</button>
+      </div>
+      <div *ngIf="isAuthenticated">
+        <button mat-raised-button (click)="logout()">Выйти</button>
+      </div>
+    </div>
+    <button *ngIf="isAuthenticated" class="nav-toggle" [class.opened]="isActive" (click)="onToggle()">
+      <span class="bar-top"></span>
+      <span class="bar-mid"></span>
+      <span class="bar-bot"></span>
+    </button>
+  </div>
+</div>
+<div class="header__navigation" [class.opened]="isActive">
+  <app-navigation
+    (closeMenu)="onClose()"
+  ></app-navigation>
+</div>

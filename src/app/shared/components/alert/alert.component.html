@@ -1,0 +1,11 @@
+<div class="alert" *ngIf="type" [class.active]="text">
+  <div class="alert__dialog"
+       [ngClass]="{
+  'alert__success': type === 'success',
+  'alert__warning': type === 'warning'
+  }"
+  >
+    <p class="alert__text">{{text}}</p>
+  </div>
+</div>
+

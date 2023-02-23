@@ -1,0 +1,54 @@
+<div class="login-page">
+
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-progress-bar class="login-page__loader" mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    <div class="login-page__input-group">
+      <div>
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+             class="login-page__error">
+          <small *ngIf="form.get('email')?.errors?.['email']">Введите корректный почтовый адрес</small>
+        </div>
+        <mat-form-field appearance="fill" class="login-page__container">
+          <mat-label>Введите почту</mat-label>
+          <input matInput
+                 placeholder="pat@example.com"
+                 class="login-page__input"
+                 formControlName="email"
+          >
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="fill" class="login-page__container">
+          <mat-label>Введите пароль</mat-label>
+          <input matInput
+                 #postalCode
+                 minlength="7"
+                 [type]="hide ? 'password' : 'text'"
+                 class="login-page__input"
+                 formControlName="password"
+          >
+          <mat-hint class="login-page__error" *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+                    align="end">{{postalCode.value.length}} / 7+
+          </mat-hint>
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div class="login-page__error" *ngIf="auth.error$ | async as error">
+        {{error}}
+      </div>
+      <button mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]='form.invalid || isLoading'
+      >
+        Войти
+      </button>
+    </div>
+  </form>
+</div>

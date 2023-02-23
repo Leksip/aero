@@ -1,0 +1,29 @@
+@import "src/assets/styles/button-animation";
+
+.header {
+  position: relative;
+  z-index: 2;
+  background: #435261;
+  padding: 10px;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__navigation {
+
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    top: 62px;
+    width: 100%;
+    height: 100%;
+    transition: .5s all;
+    transform: translateY(-1500px);
+  }
+}
+
+.opened {
+  transform: translateY(0);
+}
